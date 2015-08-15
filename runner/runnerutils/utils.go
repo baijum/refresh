@@ -12,9 +12,9 @@ import (
 var logFilePath string
 
 func init() {
-	root := os.Getenv("RUNNER_WD")
-	tmpPath := os.Getenv("RUNNER_TMP_PATH")
-	fileName := os.Getenv("RUNNER_BUILD_LOG")
+	root := os.Getenv("REFRESH_WD")
+	tmpPath := os.Getenv("REFRESH_TMP_PATH")
+	fileName := os.Getenv("REFRESH_BUILD_LOG")
 	logFilePath = filepath.Join(root, tmpPath, fileName)
 }
 

@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	envSettingsPrefix   = "RUNNER_"
+	envSettingsPrefix   = "REFRESH_"
 	mainSettingsSection = "Settings"
 )
 

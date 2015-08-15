@@ -99,10 +99,9 @@ func initLimit() {
 }
 
 func setEnvVars() {
-	os.Setenv("DEV_RUNNER", "1")
 	wd, err := os.Getwd()
 	if err == nil {
-		os.Setenv("RUNNER_WD", wd)
+		os.Setenv("REFRESH_WD", wd)
 	}
 
 	for k, v := range settings {

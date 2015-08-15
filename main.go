@@ -1,5 +1,5 @@
 /* Refresh is a command line tool that builds and (re)starts your web
-application everytime you save a go or template file.
+application everytime you save a go source file.
 
 If the web framework you are using supports the Refresh runner, it
 will show build errors on your browser.
@@ -29,7 +29,7 @@ func main() {
 			fmt.Printf("Can't find config file `%s`\n", *configPath)
 			os.Exit(1)
 		} else {
-			os.Setenv("RUNNER_CONFIG_PATH", *configPath)
+			os.Setenv("REFRESH_CONFIG_PATH", *configPath)
 		}
 	}
 
