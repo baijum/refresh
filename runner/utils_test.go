@@ -1,21 +1,37 @@
 package runner
 
-import (
-	assert "github.com/pilu/miniassert"
-	"testing"
-)
+import "testing"
 
 func TestIsWatchedFile(t *testing.T) {
-	// valid extensions
-	assert.True(t, isWatchedFile("test.go"))
-	assert.True(t, isWatchedFile("test.tpl"))
-	assert.True(t, isWatchedFile("test.tmpl"))
-	assert.True(t, isWatchedFile("test.html"))
+	validExtensions := []string{
+		"test.go",
+		"test.tpl",
+		"test.tmpl",
+		"test.html"}
 
-	/* // invalid extensions */
-	assert.False(t, isWatchedFile("test.css"))
-	assert.False(t, isWatchedFile("test-executable"))
+	for _, fileName := range validExtensions {
+		if isWatchedFile(fileName) != true {
+			t.Error("File not watched:", fileName)
+		}
+	}
 
-	// files in tmp
-	assert.False(t, isWatchedFile("./tmp/test.go"))
+	invalidExtensions := []string{
+		"test.css",
+		"test-executable"}
+
+	for _, fileName := range invalidExtensions {
+		if isWatchedFile(fileName) != false {
+			t.Error("File watched:", fileName)
+		}
+	}
+
+	filesInTmp := []string{
+		"./tmp/test.go",
+		"./tmp/test.html"}
+
+	for _, fileName := range filesInTmp {
+		if isWatchedFile(fileName) != false {
+			t.Error("File watched:", fileName)
+		}
+	}
 }
