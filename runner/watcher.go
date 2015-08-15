@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"gopkg.in/fsnotify.v0"
+	"gopkg.in/fsnotify.v1"
 )
 
 func watchFolder(path string) {
@@ -17,19 +17,19 @@ func watchFolder(path string) {
 	go func() {
 		for {
 			select {
-			case ev := <-watcher.Event:
+			case ev := <-watcher.Events:
 				if isWatchedFile(ev.Name) {
 					watcherLog("sending event %s", ev)
 					startChannel <- ev.String()
 				}
-			case err := <-watcher.Error:
+			case err := <-watcher.Errors:
 				watcherLog("error: %s", err)
 			}
 		}
 	}()
 
 	watcherLog("Watching %s", path)
-	err = watcher.Watch(path)
+	err = watcher.Add(path)
 
 	if err != nil {
 		fatal(err)
