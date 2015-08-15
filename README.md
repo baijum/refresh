@@ -42,4 +42,4 @@ Here is a sample config file with the default settings:
     log_color_runner:  green
     log_color_watcher: magenta
     log_color_app:
-    exclude_dir:       web, test, tmp
+    exclude_dir:
