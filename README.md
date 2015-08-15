@@ -6,9 +6,6 @@ written by [Andrea Franz](http://gravityblast.com)
 Refresh is a command line tool that builds and (re)starts your web
 application everytime you save a Go source file.
 
-If the web framework you are using supports the Refresh runner, it
-will show build errors on your browser.
-
 ## Installation
 
     go get github.com/baijum/refresh
