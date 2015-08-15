@@ -2,14 +2,14 @@ package runner
 
 import (
 	"fmt"
-	logPkg "log"
+	"log"
 	"os"
 	"time"
 )
 
 type logFunc func(string, ...interface{})
 
-var logger = logPkg.New(os.Stderr, "", 0)
+var logger = log.New(os.Stderr, "", 0)
 
 func newLogFunc(prefix string) func(string, ...interface{}) {
 	color, clear := "", ""

@@ -1,32 +1,35 @@
-# Fresh
+# Refresh
 
-Fresh is a command line tool that builds and (re)starts your web application everytime you save a Go or template file.
+This project is a fork of [fresh](https://github.com/pilu/fresh)
+written by [Andrea Franz](http://gravityblast.com)
 
-If the web framework you are using supports the Fresh runner, it will show build errors on your browser.
+Refresh is a command line tool that builds and (re)starts your web
+application everytime you save a Go source file.
 
-It currently works with [Traffic](https://github.com/pilu/traffic), [Martini](https://github.com/codegangsta/martini) and [gocraft/web](https://github.com/gocraft/web).
+If the web framework you are using supports the Refresh runner, it
+will show build errors on your browser.
 
 ## Installation
 
-    go get github.com/pilu/fresh
+    go get github.com/baijum/refresh
 
 ## Usage
 
     cd /path/to/myapp
 
-Start fresh:
+Start Refresh:
 
-    fresh
+    refresh
 
-Fresh will watch for file events, and every time you create/modifiy/delete a file it will build and restart the application.
-If `go build` returns an error, it will log it in the tmp folder.
+Refresh will watch for file events, and every time you
+create/modifiy/delete a file it will build and restart the
+application.  If `go build` returns an error, it will log it in the
+tmp folder.
 
-[Traffic](https://github.com/pilu/traffic) already has a middleware that shows the content of that file if it is present. This middleware is automatically added if you run a Traffic web app in dev mode with Fresh.
-Check the `_examples` folder if you want to use it with Martini or Gocraft Web.
+You can use the `-c` options if you want to specify a config file.  By
+default, `runner.conf` is used:
 
-You can use the `-c` options if you want to specify a config file:
-
-    fresh -c runner.conf
+    refresh -c runner.conf
 
 Here is a sample config file with the default settings:
 
@@ -42,21 +45,4 @@ Here is a sample config file with the default settings:
     log_color_runner:  green
     log_color_watcher: magenta
     log_color_app:
-    exclude_dir: 
-
-## Author
-
-* [Andrea Franz](http://gravityblast.com)
-
-## More
-
-* [Mailing List](https://groups.google.com/d/forum/golang-fresh)
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
-
+    exclude_dir:       web, test, tmp

@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/howeyc/fsnotify"
+	"gopkg.in/fsnotify.v0"
 )
 
 func watchFolder(path string) {
