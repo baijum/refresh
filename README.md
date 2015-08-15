@@ -27,9 +27,9 @@ application.  If `go build` returns an error, it will log it in the
 tmp folder.
 
 You can use the `-c` options if you want to specify a config file.  By
-default, `runner.conf` is used:
+default, `.refresh.conf` is used:
 
-    refresh -c runner.conf
+    refresh -c .refresh.conf
 
 Here is a sample config file with the default settings:
 

@@ -2,8 +2,7 @@
 
 .DS_Store
 tmp
-/fresh
-/runner.conf.dev
+/refresh
 
 *.o
 *.a
@@ -26,6 +25,8 @@ _cgo_export.*
 _testmain.go
 
 *.exe
+
+*.test
 
 # Backup files
 *~
