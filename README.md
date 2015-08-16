@@ -3,8 +3,10 @@
 This project is a fork of [fresh](https://github.com/pilu/fresh)
 written by [Andrea Franz](http://gravityblast.com)
 
-Refresh is a command line tool that builds and (re)starts your web
-application everytime you save a Go source file.
+Refresh is a command line tool that build and restart web application
+when you change Go and other source files.  Refresh will watch for
+file events like create, modifiy or delete and it will build and
+restart the application.
 
 ## Installation
 
@@ -18,10 +20,9 @@ Start Refresh:
 
     refresh
 
-Refresh will watch for file events, and every time you
-create/modifiy/delete a file it will build and restart the
-application.  If `go build` returns an error, it will log it in the
-tmp folder.
+Refresh will watch for file events like create, modifiy or delete and
+it will build and restart the application.  If `go build` returns an
+error, it will log it in the `tmp` folder.
 
 You can use the `-c` options if you want to specify a config file.  By
 default, `.refresh.conf` is used:
