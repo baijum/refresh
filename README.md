@@ -1,5 +1,6 @@
 # Refresh
 
+[![Coverage Status](https://coveralls.io/repos/baijum/refresh/badge.svg?branch=master&service=github)](https://coveralls.io/github/baijum/refresh?branch=master)
 [![GoDoc](https://godoc.org/github.com/baijum/refresh?status.svg)](https://godoc.org/github.com/baijum/refresh)
 [![Build Status](https://travis-ci.org/baijum/refresh.svg)](https://travis-ci.org/baijum/refresh)
 
