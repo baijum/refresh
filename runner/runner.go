@@ -12,17 +12,17 @@ func run() bool {
 
 	stderr, err := cmd.StderrPipe()
 	if err != nil {
-		fatal(err)
+		logger.Fatal(err)
 	}
 
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
-		fatal(err)
+		logger.Fatal(err)
 	}
 
 	err = cmd.Start()
 	if err != nil {
-		fatal(err)
+		logger.Fatal(err)
 	}
 
 	go io.Copy(appLogWriter{}, stderr)

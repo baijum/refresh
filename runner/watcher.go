@@ -11,7 +11,7 @@ import (
 func watchFolder(path string) {
 	watcher, err := fsnotify.NewWatcher()
 	if err != nil {
-		fatal(err)
+		logger.Fatal(err)
 	}
 
 	go func() {
@@ -32,7 +32,7 @@ func watchFolder(path string) {
 	err = watcher.Add(path)
 
 	if err != nil {
-		fatal(err)
+		logger.Fatal(err)
 	}
 }
 
