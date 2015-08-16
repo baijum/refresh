@@ -1,5 +1,6 @@
 # Refresh
 
+[![GoDoc](https://godoc.org/github.com/baijum/refresh?status.svg)](https://godoc.org/github.com/baijum/refresh)
 [![Build Status](https://travis-ci.org/baijum/refresh.svg)](https://travis-ci.org/baijum/refresh)
 
 This project is a fork of [fresh](https://github.com/pilu/fresh)
