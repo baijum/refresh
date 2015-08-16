@@ -18,3 +18,13 @@ func TestSetConfigPath(t *testing.T) {
 	}
 	os.RemoveAll(tmp)
 }
+
+func TestSetConfigPathWrongPath(t *testing.T) {
+	tmp, _ := ioutil.TempDir("", "refresh-test-")
+	inConf := filepath.Join(tmp, ".refresh.conf")
+	err := setConfigPath(inConf)
+	if err == nil {
+		t.Error("Configuration set")
+	}
+	os.RemoveAll(tmp)
+}
