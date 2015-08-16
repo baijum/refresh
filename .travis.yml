@@ -6,9 +6,13 @@ go:
   - tip
 
 before_install:
-  - go get github.com/axw/gocov/gocov
-  - go get github.com/mattn/goveralls
   - go get golang.org/x/tools/cmd/cover
+  - go get github.com/axw/gocov/gocov
+  - go get github.com/modocache/gover
+  - go get github.com/mattn/goveralls
 
 script:
-    - $HOME/gopath/bin/goveralls -service=travis-ci
+  - go test -coverprofile=runner.coverprofile ./runner
+  - go test -coverprofile=main.coverprofile
+  - $HOME/gopath/bin/gover
+  - $HOME/gopath/bin/goveralls -coverprofile=gover.coverprofile -service=travis-ci

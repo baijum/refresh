@@ -30,3 +30,6 @@ _testmain.go
 
 # Backup files
 *~
+
+# coverage profile
+*.coverprofile
