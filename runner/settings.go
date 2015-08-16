@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/baijum/refresh/config"
+	"github.com/pilu/config"
 )
 
 const (
