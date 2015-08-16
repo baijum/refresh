@@ -1,5 +1,7 @@
 # Refresh
 
+[![Build Status](https://travis-ci.org/baijum/refresh.svg)](https://travis-ci.org/baijum/refresh)
+
 This project is a fork of [fresh](https://github.com/pilu/fresh)
 written by [Andrea Franz](http://gravityblast.com)
 
