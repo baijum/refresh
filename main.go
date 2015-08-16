@@ -18,9 +18,8 @@ func setConfigPath(configPath string) error {
 	if configPath != "" {
 		if _, err := os.Stat(configPath); err != nil {
 			return errors.New("Cannot find config file: " + configPath)
-		} else {
-			os.Setenv("REFRESH_CONFIG_PATH", configPath)
 		}
+		os.Setenv("REFRESH_CONFIG_PATH", configPath)
 	}
 	return nil
 }
