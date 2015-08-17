@@ -1,6 +1,7 @@
 package runner
 
 import (
+	"os"
 	"path/filepath"
 	"testing"
 )
@@ -64,6 +65,24 @@ func TestExcludeDir(t *testing.T) {
 func TestBuildDelay(t *testing.T) {
 	delay := buildDelay()
 	if delay != 600 {
+		t.Error("Wrong delay:", delay)
+	}
+}
+
+func TestBuildDelayWrongValue(t *testing.T) {
+	os.Setenv("REFRESH_BUILD_DELAY", "wrong")
+	loadEnvSettings()
+	delay := buildDelay()
+	if delay != 600 {
+		t.Error("Wrong delay:", delay)
+	}
+}
+
+func TestBuildDelayWithValue(t *testing.T) {
+	os.Setenv("REFRESH_BUILD_DELAY", "700")
+	loadEnvSettings()
+	delay := buildDelay()
+	if delay != 700 {
 		t.Error("Wrong delay:", delay)
 	}
 }

@@ -131,7 +131,9 @@ func excludeDir() string {
 func buildDelay() int {
 	value, err := strconv.Atoi(settings["build_delay"])
 	if err != nil {
-		logger.Fatal(err)
+		value = 600
+		logger.Println(err)
+		logger.Println("Setting the build_delay as:", value)
 	}
 	return value
 }
