@@ -1,6 +1,8 @@
 package runner
 
 import (
+	"bytes"
+	"io"
 	"os"
 	"path/filepath"
 	"testing"
@@ -72,7 +74,20 @@ func TestBuildDelay(t *testing.T) {
 func TestBuildDelayWrongValue(t *testing.T) {
 	os.Setenv("REFRESH_BUILD_DELAY", "wrong")
 	loadEnvSettings()
+	old := os.Stdout
+	r, w, _ := os.Pipe()
+	os.Stdout = w
 	delay := buildDelay()
+	w.Close()
+	os.Stdout = old
+
+	var buf bytes.Buffer
+	io.Copy(&buf, r)
+	rout := buf.String()
+	eout := "strconv.ParseInt: parsing \"wrong\": invalid syntax\nSetting the build_delay as: 600\n"
+	if eout != rout {
+		t.Errorf("Wrong message: %#v\n", rout)
+	}
 	if delay != 600 {
 		t.Error("Wrong delay:", delay)
 	}

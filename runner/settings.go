@@ -132,8 +132,8 @@ func buildDelay() int {
 	value, err := strconv.Atoi(settings["build_delay"])
 	if err != nil {
 		value = 600
-		logger.Println(err)
-		logger.Println("Setting the build_delay as:", value)
+		fmt.Println(err)
+		fmt.Println("Setting the build_delay as:", value)
 	}
 	return value
 }
