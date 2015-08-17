@@ -3,6 +3,7 @@ package runner
 import (
 	"bytes"
 	"io"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 	"testing"
@@ -100,4 +101,21 @@ func TestBuildDelayWithValue(t *testing.T) {
 	if delay != 700 {
 		t.Error("Wrong delay:", delay)
 	}
+}
+
+func TestLoadRunnerConfigSettings(t *testing.T) {
+	tmp, _ := ioutil.TempDir("", "refresh-test-")
+	conf := filepath.Join(tmp, ".refresh.conf")
+	ioutil.WriteFile(conf, []byte(""), 0644)
+	os.Setenv("REFRESH_CONFIG_PATH", conf)
+	loadEnvSettings()
+
+	loadRunnerConfigSettings()
+
+	confPath := configPath()
+	if confPath != conf {
+		t.Error("'config_path' is not:", conf)
+	}
+
+	os.RemoveAll(tmp)
 }
