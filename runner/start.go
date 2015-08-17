@@ -44,7 +44,7 @@ func start() {
 
 			mainLog("receiving first event %s", eventName)
 			mainLog("sleeping for %d milliseconds", buildDelay)
-			time.Sleep(buildDelay * time.Millisecond)
+			time.Sleep(time.Duration(buildDelay) * time.Millisecond)
 			mainLog("flushing events")
 
 			flushEvents()

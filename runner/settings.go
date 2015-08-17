@@ -6,7 +6,6 @@ import (
 	"path/filepath"
 	"strconv"
 	"strings"
-	"time"
 
 	"github.com/pilu/config"
 )
@@ -129,8 +128,10 @@ func excludeDir() string {
 	return settings["exclude_dir"]
 }
 
-func buildDelay() time.Duration {
-	value, _ := strconv.Atoi(settings["build_delay"])
-
-	return time.Duration(value)
+func buildDelay() int {
+	value, err := strconv.Atoi(settings["build_delay"])
+	if err != nil {
+		logger.Fatal(err)
+	}
+	return value
 }
