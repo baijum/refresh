@@ -3,6 +3,7 @@ package main
 import (
 	"io/ioutil"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"testing"
 )
@@ -27,4 +28,13 @@ func TestSetConfigPathWrongPath(t *testing.T) {
 		t.Error("Configuration set")
 	}
 	os.RemoveAll(tmp)
+}
+
+func TestMainNonExistingConf(t *testing.T) {
+	cmd := exec.Command(os.Args[0], "-c", "/tmp/non-existing-conf")
+	err := cmd.Run()
+	if e, ok := err.(*exec.ExitError); ok && !e.Success() {
+		return
+	}
+	t.Error("Process ran with err %q, want exit status 1", err)
 }
