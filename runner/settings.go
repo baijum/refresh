@@ -76,20 +76,21 @@ func loadEnvSettings() {
 	}
 }
 
-func loadRunnerConfigSettings() {
+func loadRunnerConfigSettings() error {
 	if _, err := os.Stat(configPath()); err != nil {
-		return
+		return err
 	}
 
 	logger.Printf("Loading settings from %s", configPath())
 	sections, err := config.ParseFile(configPath(), mainSettingsSection)
 	if err != nil {
-		return
+		return err
 	}
 
 	for key, value := range sections[mainSettingsSection] {
 		settings[key] = value
 	}
+	return nil
 }
 
 func initSettings() {

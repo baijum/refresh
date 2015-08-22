@@ -92,6 +92,8 @@ func TestBuildDelayWrongValue(t *testing.T) {
 	if delay != 600 {
 		t.Error("Wrong delay:", delay)
 	}
+	os.Unsetenv("REFRESH_BUILD_DELAY")
+	settings["build_delay"] = "600"
 }
 
 func TestBuildDelayWithValue(t *testing.T) {
@@ -101,12 +103,14 @@ func TestBuildDelayWithValue(t *testing.T) {
 	if delay != 700 {
 		t.Error("Wrong delay:", delay)
 	}
+	os.Unsetenv("REFRESH_BUILD_DELAY")
+	settings["build_delay"] = "600"
 }
 
 func TestLoadRunnerConfigSettings(t *testing.T) {
 	tmp, _ := ioutil.TempDir("", "refresh-test-")
 	conf := filepath.Join(tmp, ".refresh.conf")
-	ioutil.WriteFile(conf, []byte(""), 0644)
+	ioutil.WriteFile(conf, []byte("root: test\n"), 0644)
 	os.Setenv("REFRESH_CONFIG_PATH", conf)
 	loadEnvSettings()
 
@@ -117,5 +121,20 @@ func TestLoadRunnerConfigSettings(t *testing.T) {
 		t.Error("'config_path' is not:", conf)
 	}
 
+	r := root()
+	if r != "test" {
+		t.Error("'root' is not 'test'")
+	}
+
+	os.Unsetenv("REFRESH_CONFIG_PATH")
+	settings["config_path"] = "./.refresh.conf"
 	os.RemoveAll(tmp)
+}
+
+func TestLoadRunnerConfigSettingsWithEmptyConfigPath(t *testing.T) {
+	settings["config_path"] = "/tmp/non-existing-conf-path"
+	err := loadRunnerConfigSettings()
+	if err == nil {
+		t.Log("Error not returned")
+	}
 }
